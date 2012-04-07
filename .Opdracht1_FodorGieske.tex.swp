@@ -20,6 +20,12 @@
 \textit{grep '\^{}A:'} Deze command zoekt naar een regel die met de empty string (\^{}) begint gevolgd door de letter \textit{A} en dubbelepunt.\\\\
 \textit{sed 's/\^{}A: //':} Deze command verwijdert de empty string gevolgd door de letter A en een dubbelepunt \textit{(\^{}A:)} van de door grep gevonden regels. De command \textit{> ovis-trainset.txt} definieert de output file.
 
+\section*{Question 2}
+\textit{grep -v '\^{}\$':} Deze command zoekt naar niet lege regels. \textit{-v} betekent dat er juist \textit{niet} naar de gespecificeerde regels moet worden gezocht, in dit geval een lege regel (\^{}\$).\\
+\textit{sed 's/\textbackslash s \textbackslash + / \textbackslash n/g':} Verwijdert aan het eind van alle regels de spatie (\textbackslash s) en maakt er een newline van. \\
+\textit{uniq -c:} Haalt duplicates uit de input en telt (\textit{-c}) hoeveel keer iedere regel voorkomt. \\
+\textit{sort -g -r -k 1:} Sorteert de resultaten aan de hand van de hoeveelheid voorkomens en print deze in reversed volgorde (van het hoogste getal naar het laagste). \textit{-g}: sorteer aan de hand van getallen, \textit{-r}: reverse de volgorde van sorteren, \textit{-k 1}: sorteer op de eerste key.\\
+
 
 
 
