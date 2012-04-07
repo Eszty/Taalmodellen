@@ -1,0 +1,26 @@
+\documentclass[a4paper,11pt]{article}
+
+%\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{fixltx2e}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+
+
+\begin{document}
+
+\title{Natuurlijke taalmodellen en interfaces}
+\author{Eszter Fodor \& Sharon Gieske}
+\date{\today}
+\maketitle
+
+\section*{Question 1}
+\textit{grep '\^{}A:'} Deze command zoekt naar een regel die met de empty string (\^{}) begint gevolgd door de letter \textit{A} en dubbelepunt.\\\\
+\textit{sed 's/\^{}A: //':} Deze command verwijdert de empty string gevolgd door de letter A en een dubbelepunt \textit{(\^{}A:)} van de door grep gevonden regels. De command \textit{> ovis-trainset.txt} definieert de output file.
+
+
+
+
+\end{document}
