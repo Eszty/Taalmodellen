@@ -11,11 +11,18 @@ Eszter Fodor & Sharon Gieske
 */ 
 
 import java.util.*;
+import java.io.*;
 
 public class Extracting 
 {
 	public static void main(String[] args)
 	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("n: ");
+		int n = sc.nextInt();
+		System.out.println("m: ");
+		int m = sc.nextInt();
+
 		try
 		{
 			TextIO.readFile("ovis-trainset.txt"); //reads in the file 
