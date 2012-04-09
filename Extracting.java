@@ -61,10 +61,12 @@ public class Extracting
 					TextIO.putln(ngram); //writes ngrams to file
 				//TextIO.skipBlanks();
 			}
+
+			//TODO: use hashmap for storing ngrams and their frequencies
 		}
 		catch (Exception e)
 		{
-			System.out.println("Can't read file or create ngrams");
+			System.out.println("An error occured");
 		}
 							
 	}
