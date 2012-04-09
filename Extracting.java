@@ -70,8 +70,10 @@ public class Extracting
 		Scanner sc = new Scanner(System.in);
 		System.out.println("n: ");
 		int n = sc.nextInt();
-		/*System.out.println("m: ");
-		int m = sc.nextInt();*/
+		//System.out.println("m: ");
+		//int m = sc.nextInt();
+
+		List<Integer> values = new ArrayList<Integer>();
 
 		try
 		{
@@ -108,20 +110,47 @@ public class Extracting
 					hashmap.put(string, 1);
 			}
 			
-			TextIO.putln(hashmap);
+			TextIO.putln(hashmap); //writes hashmap to file
+
+			//iterate through hashmap
 			for(Map.Entry<String, Integer> entry : hashmap.entrySet())
 			{
 				String key = entry.getKey();
 				Integer val = entry.getValue();
+
+				//put ALL values in an ArrayList
+				values.add(val);
+
 				System.out.printf("%s, %d\n", key, val);
 			}
 
+			TextIO.writeFile("values.txt");
+			TextIO.putln(values); //writes values to file
+
+			
+
+			while(iterator.hasNext())
+			{
+				if(iterator.next() > max)
+					max = iterator;
+			}
+			System.out.printf("%d", max);
 		}
 		catch (Exception e)
 		{
 			System.out.println("An error occured");
 		}
 							
+	}
+
+	public static int[] convertIntegers(List<Integer> integers)
+	{
+		 int[] valuesArray = new int[integers.size()];
+		 for (int i=0; i < valuesArray.length; i++)
+		 {
+			 valuesArray[i] = integers.get(i).intValue();
+		}
+		return valuesArray;
 	}
 
 }
