@@ -37,6 +37,29 @@ public class Extracting
 		return sb.toString();
 	}
 
+	public static Map<String, Integer> hashmap(String str)
+	{
+		Map<String, Integer> hashmap = new HashMap<String, Integer>();
+		
+		/*
+		- read line (TextIO) => string
+		- put string in hasmap
+		- val +1
+		- if string already exists only increase val
+		*/
+		
+		if(hashmap.containsKey(str))
+		{
+			Integer val = hashmap.get(str);
+			val += 1;
+			hashmap.put(str, val);
+		}
+		else
+			hashmap.put(str, 1);
+
+		return hashmap;
+		
+	}
 
 	public static void main(String[] args)
 	{
@@ -50,9 +73,8 @@ public class Extracting
 		try
 		{
 			TextIO.readFile("ovis-trainset.txt"); //reads the file 
-			System.out.printf("done\n");
+			//System.out.printf("done\n");
 			
-			TextIO.writeFile("output.txt");
 				
 			while(!TextIO.eof())
 			{
@@ -63,6 +85,15 @@ public class Extracting
 			}
 
 			//TODO: use hashmap for storing ngrams and their frequencies
+
+			TextIO.readFile("output.txt");
+			
+			while(!TextIO.eof())
+			{
+				String string = TextIO.getln();
+				//iterate through hasmap to print keys and values
+			}
+
 		}
 		catch (Exception e)
 		{
