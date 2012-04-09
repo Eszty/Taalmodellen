@@ -41,10 +41,10 @@ public class Extracting
 	public static void main(String[] args)
 	{
 		//Get values for n and m
-		/*Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		System.out.println("n: ");
 		int n = sc.nextInt();
-		System.out.println("m: ");
+		/*System.out.println("m: ");
 		int m = sc.nextInt();*/
 
 		try
@@ -55,8 +55,9 @@ public class Extracting
 			for(int i = 0; i<1; i++)
 			{
 				String word = TextIO.getln();
-				System.out.printf("%s", word);
-				TextIO.skipBlanks();
+				for (String ngram : ngrams(n, word))
+					System.out.println(ngram);
+				//TextIO.skipBlanks();
 			}
 		}
 		catch (Exception e)
