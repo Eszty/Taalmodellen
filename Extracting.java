@@ -15,18 +15,49 @@ import java.io.*;
 
 public class Extracting 
 {
+
+
+	public static List<String> ngrams(int n, String str) 
+	{
+		List<String> ngrams = new ArrayList<String>();
+		String[] words = str.split(" ");
+
+		for (int i = 0; i < words.length - n + 1; i++)
+			ngrams.add(concat(words, i, i+n));
+
+		return ngrams;
+	}
+
+	public static String concat(String[] words, int start, int end) 
+	{
+		StringBuilder sb = new StringBuilder();
+		for (int i = start; i < end; i++)
+			sb.append((i > start ? " " : "") + words[i]);
+		return sb.toString();
+	}
+
+
+
 	public static void main(String[] args)
 	{
-		Scanner sc = new Scanner(System.in);
+		//Get values for n and m
+		/*Scanner sc = new Scanner(System.in);
 		System.out.println("n: ");
 		int n = sc.nextInt();
 		System.out.println("m: ");
-		int m = sc.nextInt();
+		int m = sc.nextInt();*/
 
 		try
 		{
-			TextIO.readFile("ovis-trainset.txt"); //reads in the file 
-			System.out.printf("done");
+			TextIO.readFile("ovis-trainset.txt"); //reads the file 
+			System.out.printf("done\n");
+			
+			for(int i = 0; i<1; i++)
+			{
+				String word = TextIO.getln();
+				System.out.printf("%s", word);
+				TextIO.skipBlanks();
+			}
 		}
 		catch (Exception e)
 		{
@@ -34,6 +65,9 @@ public class Extracting
 		}
 							
 	}
+
+
+
 }
 
 
