@@ -126,31 +126,30 @@ public class Extracting
 
 			TextIO.writeFile("values.txt");
 			TextIO.putln(values); //writes values to file
+			
+			int max = 0;
+			Iterator iterator = values.iterator();
 
 			
-
-			while(iterator.hasNext())
+			int[] valuesArray = new int[values.size()];
+			for(int i = 0; i < valuesArray.length; i++)
 			{
-				if(iterator.next() > max)
-					max = iterator;
+				valuesArray[i] = values.get(i).intValue();
+			}
+
+			for(int i = 0; i < valuesArray.length; i++)
+			{
+				if(valuesArray[i] > max)
+					max = valuesArray[i];	
 			}
 			System.out.printf("%d", max);
+
 		}
 		catch (Exception e)
 		{
 			System.out.println("An error occured");
 		}
 							
-	}
-
-	public static int[] convertIntegers(List<Integer> integers)
-	{
-		 int[] valuesArray = new int[integers.size()];
-		 for (int i=0; i < valuesArray.length; i++)
-		 {
-			 valuesArray[i] = integers.get(i).intValue();
-		}
-		return valuesArray;
 	}
 
 }
