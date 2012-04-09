@@ -111,7 +111,7 @@ public class Extracting
 					hashmap.put(string, 1);
 			}
 			
-			TextIO.putln(hashmap); //writes hashmap to file
+			//TextIO.putln(hashmap); //writes hashmap to file
 
 			//iterate through hashmap
 			for(Map.Entry<String, Integer> entry : hashmap.entrySet())
@@ -122,14 +122,12 @@ public class Extracting
 				//put ALL values in an ArrayList
 				values.add(val);
 
-				System.out.printf("%s, %d\n", key, val);
+				//System.out.printf("%s, %d\n", key, val);
 			}
 
-			TextIO.writeFile("values.txt");
-			TextIO.putln(values); //writes values to file
+			//TextIO.writeFile("values.txt");
+			//TextIO.putln(values); //writes values to file
 			
-			int max = 0;
-			Iterator iterator = values.iterator();
 
 			//convert arrayList to simple array	
 			int[] valuesArray = new int[values.size()];
@@ -138,16 +136,7 @@ public class Extracting
 				valuesArray[i] = values.get(i).intValue();
 			}
 			
-			//loop through array of values
-			/*for(int i = 0; i < valuesArray.length; i++)
-			{
-				if(valuesArray[i] > max)
-					max = valuesArray[i];	
-			}
-			System.out.printf("%d\n", max);*/
-
-
-			//int[] sorted = new int[valuesArray.length];
+			//sort the array in descending order
 			Arrays.sort(valuesArray);
 
 			for(int i=0;i<valuesArray.length/2;i++) 
@@ -160,8 +149,19 @@ public class Extracting
 
 			for(int i = 0; i < m; i++)
 			{
-				System.out.printf("%d\n", valuesArray[i]);
+				//System.out.printf("%d\n", valuesArray[i]);
+
+				Integer a = valuesArray[i];
+				
+				for (Map.Entry<String, Integer> entry : hashmap.entrySet()) 
+				{
+					if(a.equals(entry.getValue()))
+					{
+						System.out.printf("%d, %s\n", valuesArray[i], entry.getKey());
+					}
+				}
 			}
+
 
 		}
 		catch (Exception e)
