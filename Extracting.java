@@ -70,8 +70,9 @@ public class Extracting
 		Scanner sc = new Scanner(System.in);
 		System.out.println("n: ");
 		int n = sc.nextInt();
-		//System.out.println("m: ");
-		//int m = sc.nextInt();
+		System.out.println("m: ");
+		int m = sc.nextInt();
+		int[] highest = new int[m];
 
 		List<Integer> values = new ArrayList<Integer>();
 
@@ -130,19 +131,37 @@ public class Extracting
 			int max = 0;
 			Iterator iterator = values.iterator();
 
-			
+			//convert arrayList to simple array	
 			int[] valuesArray = new int[values.size()];
 			for(int i = 0; i < valuesArray.length; i++)
 			{
 				valuesArray[i] = values.get(i).intValue();
 			}
-
-			for(int i = 0; i < valuesArray.length; i++)
+			
+			//loop through array of values
+			/*for(int i = 0; i < valuesArray.length; i++)
 			{
 				if(valuesArray[i] > max)
 					max = valuesArray[i];	
 			}
-			System.out.printf("%d", max);
+			System.out.printf("%d\n", max);*/
+
+
+			//int[] sorted = new int[valuesArray.length];
+			Arrays.sort(valuesArray);
+
+			for(int i=0;i<valuesArray.length/2;i++) 
+			{
+				// swap the elements
+				int temp = valuesArray[i];
+				valuesArray[i] = valuesArray[valuesArray.length-(i+1)];
+				valuesArray[valuesArray.length-(i+1)] = temp;
+			}
+
+			for(int i = 0; i < m; i++)
+			{
+				System.out.printf("%d\n", valuesArray[i]);
+			}
 
 		}
 		catch (Exception e)
