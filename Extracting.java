@@ -106,11 +106,16 @@ public class Extracting
 				}
 				else
 					hashmap.put(string, 1);
-
-
 			}
 			
 			TextIO.putln(hashmap);
+			for(Map.Entry<String, Integer> entry : hashmap.entrySet())
+			{
+				String key = entry.getKey();
+				Integer val = entry.getValue();
+				System.out.printf("%s, %d\n", key, val);
+			}
+
 		}
 		catch (Exception e)
 		{
@@ -118,8 +123,6 @@ public class Extracting
 		}
 							
 	}
-
-
 
 }
 
