@@ -16,7 +16,7 @@ import java.io.*;
 public class Extracting 
 {
 
-
+	//Create a string list from input string
 	public static List<String> ngrams(int n, String str) 
 	{
 		List<String> ngrams = new ArrayList<String>();
@@ -28,6 +28,7 @@ public class Extracting
 		return ngrams;
 	}
 
+	//Create a string from the input words
 	public static String concat(String[] words, int start, int end) 
 	{
 		StringBuilder sb = new StringBuilder();
@@ -35,7 +36,6 @@ public class Extracting
 			sb.append((i > start ? " " : "") + words[i]);
 		return sb.toString();
 	}
-
 
 
 	public static void main(String[] args)
@@ -52,17 +52,19 @@ public class Extracting
 			TextIO.readFile("ovis-trainset.txt"); //reads the file 
 			System.out.printf("done\n");
 			
-			for(int i = 0; i<1; i++)
+			TextIO.writeFile("output.txt");
+				
+			while(!TextIO.eof())
 			{
 				String word = TextIO.getln();
 				for (String ngram : ngrams(n, word))
-					System.out.println(ngram);
+					TextIO.putln(ngram); //writes ngrams to file
 				//TextIO.skipBlanks();
 			}
 		}
 		catch (Exception e)
 		{
-			System.out.println("fail");
+			System.out.println("Can't read file or create ngrams");
 		}
 							
 	}
