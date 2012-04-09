@@ -63,6 +63,9 @@ public class Extracting
 
 	public static void main(String[] args)
 	{
+
+		Map<String, Integer> hashmap = new HashMap<String, Integer>();
+		
 		//Get values for n and m
 		Scanner sc = new Scanner(System.in);
 		System.out.println("n: ");
@@ -73,8 +76,9 @@ public class Extracting
 		try
 		{
 			TextIO.readFile("ovis-trainset.txt"); //reads the file 
-			//System.out.printf("done\n");
+			System.out.printf("done\n");
 			
+			TextIO.writeFile("output.txt");
 				
 			while(!TextIO.eof())
 			{
@@ -88,12 +92,25 @@ public class Extracting
 
 			TextIO.readFile("output.txt");
 			
+			TextIO.writeFile("hash.txt");
+
 			while(!TextIO.eof())
 			{
 				String string = TextIO.getln();
-				//iterate through hasmap to print keys and values
-			}
 
+				if(hashmap.containsKey(string))
+				{
+					Integer val = hashmap.get(string);
+					val += 1;
+					hashmap.put(string, val);
+				}
+				else
+					hashmap.put(string, 1);
+
+
+			}
+			
+			TextIO.putln(hashmap);
 		}
 		catch (Exception e)
 		{
