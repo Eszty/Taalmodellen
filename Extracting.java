@@ -95,7 +95,7 @@ public class Extracting
 
 			TextIO.readFile("output.txt");
 			
-			//TextIO.writeFile("hash.txt");
+			TextIO.writeFile("hash.txt");
 
 			while(!TextIO.eof())
 			{
@@ -111,7 +111,7 @@ public class Extracting
 					hashmap.put(string, 1);
 			}
 			
-			//TextIO.putln(hashmap); //writes hashmap to file
+			TextIO.putln(hashmap); //writes hashmap to file
 
 			//iterate through hashmap
 			for(Map.Entry<String, Integer> entry : hashmap.entrySet())
