@@ -204,6 +204,11 @@ public static HashMap<String, Integer> wordsCounter(StringTokenizer st, int n) {
  				}
  			}
  		}
- 	return ngramMap;
- }
+ 		
+		return ngramMap;
+
+	}
+
+
+
 }
