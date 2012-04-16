@@ -5,7 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-public class modelcode {
+
+public class Modelcode {
  /*
   * Input: 1. Name of the file to get the n-grams from 2. Size of the n-grams
   * 3. Amount of highest counts to be printed
@@ -15,6 +16,7 @@ public class modelcode {
   * ovis-trainset.txt 2 10
   */
 public static void main(String[] args) throws IOException {
+
 	 String filename = args[0];
 	 int n = Integer.parseInt(args[1]);
 	 int m = Integer.parseInt(args[2]);
@@ -29,6 +31,7 @@ public static void main(String[] args) throws IOException {
 	 List<String> nGrams = new ArrayList<String>(nGramCounts.keySet());
 	 List<Integer> yourMapValues = new ArrayList<Integer>(
 	 nGramCounts.values());
+
 	 TreeSet<Integer> sortedSet = new TreeSet<Integer>(yourMapValues);
 	 Object[] sortedArray = sortedSet.toArray();
 	 int size = sortedArray.length;
