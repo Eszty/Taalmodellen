@@ -37,15 +37,19 @@ public static void main(String[] args) throws IOException {
 	calculateprob(sortedNgrams,sortedN_1grams);
  }
 
+/*
+Calculates probability for testsentences
+*/
 public static void calculateprob( HashMap<String, Integer> sortedNgrams,  HashMap<String, Integer> sortedN_1grams) throws IOException{
-//public static void calculateprob() throws IOException {
 	 File file = new File("lorem.txt");
 	 StringTokenizer sentences = getSentences(file);
 	 HashMap<String, Integer> probshash = new LinkedHashMap<String, Integer>();
 
 	 System.out.println("NOW");
 	 String[] sentenceArray = new String[sentences.countTokens()];
-	 //String[] sentenceArray_n1 = new String[sentences.countTokens()];
+	 String[] subsentenceArray = new String[sentences.countTokens()];
+	 
+	// create string array from sentences in testfile
 	 int j = 0;
  	 String empty = "";
 	 while(sentences.hasMoreTokens()){
@@ -54,10 +58,22 @@ public static void calculateprob( HashMap<String, Integer> sortedNgrams,  HashMa
 		j++;
 	 }
 
+	// create n-1 strings
+	for(int k = 0; k < sentenceArray.length; k++)
+	{
+		String[] words = sentenceArray[k].split(" "); 
+		subsentenceArray[k] = "";
+		for(int p = 0; p < (words.length-1); p++){
+			subsentenceArray[k] = subsentenceArray[k].concat(" " + words[p]);
+		}
 
+	}
 	for(int i = 0; i < sentenceArray.length; i++){
 		System.out.println(sentenceArray[i]);
-		String a = sentenceArray[i];
+	//	String a = sentenceArray[i];
+		//String b = subsentenceArray[i];
+		Integer val = 0;
+		Integer subval = 0;
 			//iterate through hashmap
 			for(Map.Entry<String, Integer> entry : sortedNgrams.entrySet())
 			{
@@ -65,10 +81,20 @@ public static void calculateprob( HashMap<String, Integer> sortedNgrams,  HashMa
 				String key = (String) entry.getKey();
 				//System.out.println(key);
 				if(key.equals(sentenceArray[i])){
-					Integer val = entry.getValue();
-					System.out.println(val);
+					val = entry.getValue();
 				}
 			}
+
+			for(Map.Entry<String, Integer> entry : sortedN_1grams.entrySet())
+			{
+
+				String key = (String) entry.getKey();
+				//System.out.println(key);
+				if(key.equals(subsentenceArray[i])){
+					subval = entry.getValue();
+				}
+			}
+		System.out.printf("%d : %d / %d",i,val, subval);
 
 	}
 
