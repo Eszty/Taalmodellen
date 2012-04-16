@@ -33,39 +33,47 @@ public static void main(String[] args) throws IOException {
 	 HashMap<String, Integer> sortedN_1grams = new LinkedHashMap<String, Integer>();
 	 
 	 printngrams(nGramCounts, sortedNgrams, m);	
-	 printngrams(n_1GramCounts, sortedN_1grams, m);	
-	/*
-	 List<String> nGrams = new ArrayList<String>(nGramCounts.keySet());
-
-	 List<Integer> yourMapValues = new ArrayList<Integer>(
-	 nGramCounts.values());
-
-
-	 TreeSet<Integer> sortedSet = new TreeSet<Integer>(yourMapValues);
-	 Object[] sortedArray = sortedSet.toArray();
-	 int size = sortedArray.length;
-	 
-	 for (int i = size - 1; i >= 0; i--) {
-	 	sortedNgrams.put(nGrams.get(yourMapValues.indexOf(sortedArray[i])),
-	 	(Integer) sortedArray[i]);
-	 }
-
-	 Iterator<String> it = sortedNgrams.keySet().iterator();
-	 int i = 0;
-
-
-	 while (it.hasNext()) {
-	 	String nGram = (String) it.next();
-	 	Integer count = sortedNgrams.get(nGram);
-
-	 	if (i < m) {
-	 		i++;
-	 		System.out.println(i + ". " + nGram + ": " + count);
-	 	}
-	 }
-	System.out.println("HELLO");
-*/
+	 //printngrams(n_1GramCounts, sortedN_1grams, m);	
+	calculateprob(sortedNgrams,sortedN_1grams);
  }
+
+public static void calculateprob( HashMap<String, Integer> sortedNgrams,  HashMap<String, Integer> sortedN_1grams) throws IOException{
+//public static void calculateprob() throws IOException {
+	 File file = new File("lorem.txt");
+	 StringTokenizer sentences = getSentences(file);
+	 HashMap<String, Integer> probshash = new LinkedHashMap<String, Integer>();
+
+	 System.out.println("NOW");
+	 String[] sentenceArray = new String[sentences.countTokens()];
+	 //String[] sentenceArray_n1 = new String[sentences.countTokens()];
+	 int j = 0;
+ 	 String empty = "";
+	 while(sentences.hasMoreTokens()){
+		sentenceArray[j] = sentences.nextToken();	
+		sentenceArray[j] = empty.concat(" " + sentenceArray[j]);
+		j++;
+	 }
+
+
+	for(int i = 0; i < sentenceArray.length; i++){
+		System.out.println(sentenceArray[i]);
+		String a = sentenceArray[i];
+			//iterate through hashmap
+			for(Map.Entry<String, Integer> entry : sortedNgrams.entrySet())
+			{
+
+				String key = (String) entry.getKey();
+				//System.out.println(key);
+				if(key.equals(sentenceArray[i])){
+					Integer val = entry.getValue();
+					System.out.println(val);
+				}
+			}
+
+	}
+
+
+}
 
 public static void printngrams(HashMap<String, Integer> nGramCounts, HashMap<String, Integer> sortedNgrams, int m){
 
@@ -154,6 +162,7 @@ public static HashMap<String, Integer> wordsCounter(StringTokenizer st, int n) {
  	String[] temp = new String[n];
 	System.out.println("HELLO");
 	System.out.println(n);
+
 
  	while (st.hasMoreTokens()) {
  		String ngram = "";
