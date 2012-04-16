@@ -1,4 +1,4 @@
- import java.util.*;
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +14,7 @@ public class modelcode {
   * those sentences. After that sort the n-grams to get the highest counts.
   * ovis-trainset.txt 2 10
   */
- public static void main(String[] args) throws IOException {
+public static void main(String[] args) throws IOException {
 	 String filename = args[0];
 	 int n = Integer.parseInt(args[1]);
 	 int m = Integer.parseInt(args[2]);
@@ -32,9 +32,10 @@ public class modelcode {
 	 TreeSet<Integer> sortedSet = new TreeSet<Integer>(yourMapValues);
 	 Object[] sortedArray = sortedSet.toArray();
 	 int size = sortedArray.length;
+	 
 	 for (int i = size - 1; i >= 0; i--) {
-	 sortedNgrams.put(nGrams.get(yourMapValues.indexOf(sortedArray[i])),
-	 (Integer) sortedArray[i]);
+	 	sortedNgrams.put(nGrams.get(yourMapValues.indexOf(sortedArray[i])),
+	 	(Integer) sortedArray[i]);
 	 }
 	 /*
 	  * Printing the top m n-grams or all of them if m is bigger than the
@@ -42,37 +43,46 @@ public class modelcode {
 	  */
 	 Iterator<String> it = sortedNgrams.keySet().iterator();
 	 int i = 0;
+
 	 while (it.hasNext()) {
-	 String nGram = (String) it.next();
-	 Integer count = sortedNgrams.get(nGram);
-	 if (i < m) {
-	 i++;
-	 System.out.println(i + ". " + nGram + ": " + count);
-	 }
+	 	String nGram = (String) it.next();
+	 	Integer count = sortedNgrams.get(nGram);
+
+	 	if (i < m) {
+	 		i++;
+	 		System.out.println(i + ". " + nGram + ": " + count);
+	 	}
 	 }
  }
  /*
   * Read the input file, and split every sentence on a newline using a
   * deliminator "\n" Returns a StringTokenizer containing the sentences
   */
- public static StringTokenizer getSentences(File file) throws IOException {
- StringBuffer contents = new StringBuffer();
- BufferedReader reader = null;
- try {
- reader = new BufferedReader(new FileReader(file));
- String text = null;
- while ((text = reader.readLine()) != null) {
- contents.append(text).append(
- System.getProperty("line.separator"));
- }
- } catch (FileNotFoundException e) {
- e.printStackTrace();
- }
- String message = contents.substring(0, contents.length());
- String deliminator = "\t\n\r\f";
- StringTokenizer st = new StringTokenizer(message, deliminator);
- return st;
- }
+public static StringTokenizer getSentences(File file) throws IOException {
+ 
+	StringBuffer contents = new StringBuffer();
+	BufferedReader reader = null;
+
+ 	try {
+ 		reader = new BufferedReader(new FileReader(file));
+ 		String text = null;
+
+ 		while ((text = reader.readLine()) != null) {
+ 			contents.append(text).append(
+ 			System.getProperty("line.separator"));
+ 		}
+
+ 	} 
+	catch (FileNotFoundException e) {
+ 		e.printStackTrace();
+ 	}
+
+ 	String message = contents.substring(0, contents.length());
+ 	String deliminator = "\t\n\r\f";
+ 	StringTokenizer st = new StringTokenizer(message, deliminator);
+
+ 	return st;
+}
  /*
   * Method used to create a sorted hashMap with n-grams of size n from the
   * inputed StringTokenizer st Creates an String array of size n to
@@ -85,47 +95,59 @@ public class modelcode {
   * token. Create ngram over temp values. Check if in hashMap , if not add
   * else increase value by 1 Repeat untill no more tokens in st2 or st.
   */
- public static HashMap<String, Integer> wordsCounter(StringTokenizer st,
- int n) {
- HashMap<String, Integer> ngramMap = new HashMap<String, Integer>();
- String sentence;
- String[] temp = new String[n];
- while (st.hasMoreTokens()) {
- String ngram = "";
- sentence = st.nextToken();
- for (int i = 0; i < n - 1; i++) {
- sentence = "<s> " + sentence;
- }
- sentence = sentence + " </s>";
- StringTokenizer st2 = new StringTokenizer(sentence, " ");
- for (int c = 0; c < n; c++) {
- temp[c] = st2.nextToken();
- // fix
- }
- for (int i = 0; i < n; i++) {
- ngram = ngram.concat(" " + temp[i]);
- }
- if (ngramMap.containsKey(ngram)) {
- ngramMap.put(ngram, (ngramMap.get(ngram) + 1));
- } else {
- ngramMap.put(ngram, 1);
- }
- while (st2.hasMoreTokens()) {
- ngram = "";
- for (int c2 = 0; c2 < n - 1; c2++) {
- temp[c2] = temp[c2 + 1];
- }
- temp[n - 1] = st2.nextToken();
- for (int i = 0; i < n; i++) {
- ngram = ngram.concat(" " + temp[i]);
- }
- if (ngramMap.containsKey(ngram)) {
- ngramMap.put(ngram, (ngramMap.get(ngram) + 1));
- } else {
- ngramMap.put(ngram, 1);
- }
- }
- }
- return ngramMap;
+public static HashMap<String, Integer> wordsCounter(StringTokenizer st, int n) {
+ 	HashMap<String, Integer> ngramMap = new HashMap<String, Integer>();
+ 	String sentence;
+ 	String[] temp = new String[n];
+
+ 	while (st.hasMoreTokens()) {
+ 		String ngram = "";
+ 		sentence = st.nextToken();
+
+ 		for (int i = 0; i < n - 1; i++) {
+ 			sentence = "<s> " + sentence;
+ 		}
+
+ 		sentence = sentence + " </s>";
+ 		StringTokenizer st2 = new StringTokenizer(sentence, " ");
+
+ 		for (int c = 0; c < n; c++) {
+ 			temp[c] = st2.nextToken();
+ 			// fix
+ 			}
+
+ 		for (int i = 0; i < n; i++) {
+ 			ngram = ngram.concat(" " + temp[i]);
+ 		}
+
+ 		if (ngramMap.containsKey(ngram)) {
+ 			ngramMap.put(ngram, (ngramMap.get(ngram) + 1));
+ 		} 
+		else {
+ 			ngramMap.put(ngram, 1);
+ 		}
+
+ 			while (st2.hasMoreTokens()) {
+ 				ngram = "";
+
+ 				for (int c2 = 0; c2 < n - 1; c2++) {
+ 					temp[c2] = temp[c2 + 1];
+ 				}
+
+ 				temp[n - 1] = st2.nextToken();
+
+ 				for (int i = 0; i < n; i++) {
+ 					ngram = ngram.concat(" " + temp[i]);
+ 				}
+
+ 				if (ngramMap.containsKey(ngram)) {
+ 					ngramMap.put(ngram, (ngramMap.get(ngram) + 1));
+ 				} 
+				else {
+ 					ngramMap.put(ngram, 1);
+ 				}
+ 			}
+ 		}
+ 	return ngramMap;
  }
 }
