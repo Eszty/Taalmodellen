@@ -33,6 +33,7 @@ public static void main(String[] args) throws IOException {
 	 
 	 printngrams(nGramCounts, sortedNgrams, m);	
 	 printngrams(n_1GramCounts, sortedN_1grams, m);	
+	calculateprob();
 	/*
 	 List<String> nGrams = new ArrayList<String>(nGramCounts.keySet());
 
@@ -65,6 +66,15 @@ public static void main(String[] args) throws IOException {
 	System.out.println("HELLO");
 */
  }
+
+//public static void calculateprob( HashMap<String, Integer> sortedNgrams,  HashMap<String, Integer> sortedN_1grams){
+public static void calculateprob() throws IOException {{
+	 File file = new File("lorem.txt");
+	 StringTokenizer sentences = getSentences(file);
+	 while(sentences.hasMoreTokens()){
+		System.out.println(sentences.nextToken());	
+	}
+}
 
 public static void printngrams(HashMap<String, Integer> nGramCounts, HashMap<String, Integer> sortedNgrams, int m){
 
