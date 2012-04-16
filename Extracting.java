@@ -22,9 +22,9 @@ public class Extracting
 		List<String> ngrams = new ArrayList<String>();
 		String[] words = str.split(" ");
 
-		for (int i = 0; i < words.length - n + 1; i++)
+		for (int i = 0; i < words.length - n + 1; i++){
 			ngrams.add(concat(words, i, i+n));
-
+		}	
 		return ngrams;
 	}
 
@@ -150,16 +150,17 @@ public class Extracting
 			for(int i = 0; i < m; i++)
 			{
 				//System.out.printf("%d\n", valuesArray[i]);
-
-				Integer a = valuesArray[i];
-				
-				for (Map.Entry<String, Integer> entry : hashmap.entrySet()) 
-				{
-					if(a.equals(entry.getValue()))
+				if(valuesArray[i] != valuesArray[i+1]){
+					Integer a = valuesArray[i];
+					for (Map.Entry<String, Integer> entry : hashmap.entrySet()) 
 					{
-						System.out.printf("%d, %s\n", valuesArray[i], entry.getKey());
+						if(a.equals(entry.getValue()))
+						{
+							System.out.printf("%d, %s\n", valuesArray[i], entry.getKey());
+						}
 					}
-				}
+			}
+				
 			}
 
 
