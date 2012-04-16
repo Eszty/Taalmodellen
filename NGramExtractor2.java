@@ -3,7 +3,7 @@ import java.util.Map.Entry;
 import java.io.*;
 /**
  * Extracts all ngrams out of a text file and puts START and STOP symbols at the beginning and end of each paragraph
- * @author Steven
+ * 
  *
  */
 public class NGramExtractor2 {
