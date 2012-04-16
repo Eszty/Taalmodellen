@@ -23,14 +23,22 @@ public static void main(String[] args) throws IOException {
 	 
 	 File file = new File(filename);
 	 StringTokenizer sentences = getSentences(file);
+	 StringTokenizer sentences1 = getSentences(file);
 	 HashMap<String, Integer> nGramCounts = wordsCounter(sentences, n);
+	 int p = n-1;
+	 HashMap<String, Integer> n_1GramCounts = wordsCounter(sentences1, p);
+
 	 HashMap<String, Integer> sortedNgrams = new LinkedHashMap<String, Integer>();
-	 /*
-	  * Sorting the created n-gram hashmap with counters
-	  */
+	 HashMap<String, Integer> sortedN_1grams = new LinkedHashMap<String, Integer>();
+	 
+	 printngrams(nGramCounts, sortedNgrams, m);	
+	 printngrams(n_1GramCounts, sortedN_1grams, m);	
+	/*
 	 List<String> nGrams = new ArrayList<String>(nGramCounts.keySet());
+
 	 List<Integer> yourMapValues = new ArrayList<Integer>(
 	 nGramCounts.values());
+
 
 	 TreeSet<Integer> sortedSet = new TreeSet<Integer>(yourMapValues);
 	 Object[] sortedArray = sortedSet.toArray();
@@ -40,12 +48,10 @@ public static void main(String[] args) throws IOException {
 	 	sortedNgrams.put(nGrams.get(yourMapValues.indexOf(sortedArray[i])),
 	 	(Integer) sortedArray[i]);
 	 }
-	 /*
-	  * Printing the top m n-grams or all of them if m is bigger than the
-	  * n-gram set
-	  */
+
 	 Iterator<String> it = sortedNgrams.keySet().iterator();
 	 int i = 0;
+
 
 	 while (it.hasNext()) {
 	 	String nGram = (String) it.next();
@@ -56,7 +62,50 @@ public static void main(String[] args) throws IOException {
 	 		System.out.println(i + ". " + nGram + ": " + count);
 	 	}
 	 }
+	System.out.println("HELLO");
+*/
  }
+
+public static void printngrams(HashMap<String, Integer> nGramCounts, HashMap<String, Integer> sortedNgrams, int m){
+
+	 /*
+	  * Sorting the created n-gram hashmap with counters
+	  */
+	 List<String> nGrams = new ArrayList<String>(nGramCounts.keySet());
+
+	 List<Integer> yourMapValues = new ArrayList<Integer>(
+	 nGramCounts.values());
+
+
+	 TreeSet<Integer> sortedSet = new TreeSet<Integer>(yourMapValues);
+	 Object[] sortedArray = sortedSet.toArray();
+	 int size = sortedArray.length;
+	 
+	 for (int i = size - 1; i >= 0; i--) {
+	 	sortedNgrams.put(nGrams.get(yourMapValues.indexOf(sortedArray[i])),
+	 	(Integer) sortedArray[i]);
+	 }
+
+	 /*
+	  * Printing the top m n-grams or all of them if m is bigger than the
+	  * n-gram set
+	  */
+	 Iterator<String> it = sortedNgrams.keySet().iterator();
+	 int i = 0;
+
+
+	 while (it.hasNext()) {
+	 	String nGram = (String) it.next();
+	 	Integer count = sortedNgrams.get(nGram);
+
+	 	if (i < m) {
+	 		i++;
+	 		System.out.println(i + ". " + nGram + ": " + count);
+	 	}
+	 }
+	System.out.println("HELLO");
+}
+
  /*
   * Read the input file, and split every sentence on a newline using a
   * deliminator "\n" Returns a StringTokenizer containing the sentences
@@ -102,6 +151,8 @@ public static HashMap<String, Integer> wordsCounter(StringTokenizer st, int n) {
  	HashMap<String, Integer> ngramMap = new HashMap<String, Integer>();
  	String sentence;
  	String[] temp = new String[n];
+	System.out.println("HELLO");
+	System.out.println(n);
 
  	while (st.hasMoreTokens()) {
  		String ngram = "";
@@ -109,6 +160,7 @@ public static HashMap<String, Integer> wordsCounter(StringTokenizer st, int n) {
 
  		for (int i = 0; i < n - 1; i++) {
  			sentence = "<s> " + sentence;
+			
  		}
 
  		sentence = sentence + " </s>";
