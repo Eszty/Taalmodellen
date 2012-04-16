@@ -34,7 +34,11 @@ public static void main(String[] args) throws IOException {
 	 
 	 printngrams(nGramCounts, sortedNgrams, m);	
 	 //printngrams(n_1GramCounts, sortedN_1grams, m);	
-	calculateprob(sortedNgrams,sortedN_1grams);
+	 calculateprob(sortedNgrams,sortedN_1grams);
+
+	 calculateGoodTuringProbability(sortedNgrams);
+
+
  }
 
 public static void calculateprob( HashMap<String, Integer> sortedNgrams,  HashMap<String, Integer> sortedN_1grams) throws IOException{
@@ -216,6 +220,33 @@ public static HashMap<String, Integer> wordsCounter(StringTokenizer st, int n) {
  		
 		return ngramMap;
 
+	}
+	
+	// DEEL 3 berekening....denk ik...nog lang niet
+	public static boolean calculateGoodTuringProbability( HashMap<String, Integer> sortedNgrams ) throws IOException {
+		
+		File file = new File("lorem2.txt");
+		StringTokenizer string = getSentences(file);
+
+		String[] stringArray = new String[string.countTokens()];
+	 	
+	 	int j = 0;
+ 	 	String empty = "";
+	 	while(string.hasMoreTokens()){
+			stringArray[j] = string.nextToken();
+			System.out.println(string.nextToken());
+			stringArray[j] = empty.concat(" " + stringArray[j]);
+			
+			//System.out.println(stringArray[j]);
+			j++;
+	 	}
+	 	
+	 	
+	 	
+	 
+
+		return true;
+		
 	}
 
 
