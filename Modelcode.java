@@ -25,6 +25,7 @@ public static void main(String[] args) throws IOException {
 	 StringTokenizer sentences = getSentences(file);
 	 StringTokenizer sentences1 = getSentences(file);
 	 HashMap<String, Integer> nGramCounts = wordsCounter(sentences, n);
+
 	 int p = n-1;
 	 HashMap<String, Integer> n_1GramCounts = wordsCounter(sentences1, p);
 
