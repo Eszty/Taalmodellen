@@ -95,7 +95,7 @@ public class Extracting
 
 			TextIO.readFile("output.txt");
 			
-			TextIO.writeFile("hash.txt");
+			//TextIO.writeFile("hash.txt");
 
 			while(!TextIO.eof())
 			{
