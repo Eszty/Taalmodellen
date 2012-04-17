@@ -16,16 +16,16 @@ public class TestSharon {
 	public static void main(String[] args) throws IOException {
 
 		 int n = Integer.parseInt(args[0]);
-		 int m = Integer.parseInt(args[1]);
-		 
+		System.out.printf("??? %d \n",n);
+		 String file1 = args[1];
+		 String file2 = args[2];
+		 String file3 = args[3];
 
 		try {
 
-	       //File file = new File("lorem.txt");
-           File file = new File("ovis-trainset.txt");
+           File file = new File(file1);
 			Scanner s = new Scanner(file);
 
-            //ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
             // Create an array containing all words in the text (in the same order)
             while ( s.hasNextLine() ) {
  		        ArrayList<String> words = new ArrayList<String>();
@@ -38,19 +38,28 @@ public class TestSharon {
 				words.add("STOP");
 				lines.add(words);
 		    }
+
+
 			HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
 			HashMap<String, Integer> n_1gram = new HashMap<String, Integer>();
 			ngram = createNgrams(lines, n);
 			n_1gram = createNgrams(lines, n-1);
 
+
+
 			//sort ngram
 			LinkedHashMap<String, Integer> sortedNgrams = new LinkedHashMap<String, Integer>();
+			System.out.println("n gram");
+
+			//SORTEREN GAAT MIS!
 			sortedNgrams = printngrams(ngram, sortedNgrams,n);
+			System.out.println(sortedNgrams);
+			System.out.println("n-1 gram");
 			LinkedHashMap<String, Integer> sortedN_1grams = new LinkedHashMap<String, Integer>();
 			sortedN_1grams = printngrams(n_1gram, sortedN_1grams,n);			
 
-
-			calculateprob(ngram, n_1gram, n);
+/*
+			calculateprob(ngram, n_1gram, n, file2);
 			//print to file
  	     	PrintStream out = new PrintStream(new FileOutputStream("OutFileSHARON.txt"));
 			for(Map.Entry<String, Integer> entry : sortedNgrams.entrySet())
@@ -74,8 +83,8 @@ public class TestSharon {
 
 
 		
-			calculateprob_3();
-
+			calculateprob_3(file3);
+*/
 		} catch ( Exception e ) {
 			// FileNotFoundException
 			e.printStackTrace();
@@ -83,9 +92,9 @@ public class TestSharon {
 	}
 
 	// exercise 2.3
-	public static void calculateprob_3(){
+	public static void calculateprob_3(String filename){
 		
-			try{File file = new File("lorem20.txt");
+			try{File file = new File(filename);
 			Scanner s = new Scanner(file);
             ArrayList<ArrayList<String>> testlines = new ArrayList<ArrayList<String>>();
             // Create an array containing all words in the text (in the same order)
@@ -154,8 +163,8 @@ public class TestSharon {
 
 		}
 
-	public static void calculateprob(HashMap<String, Integer> ngram, HashMap<String, Integer> n_1gram, int n){
-			try{File file = new File("lorem.txt");
+	public static void calculateprob(HashMap<String, Integer> ngram, HashMap<String, Integer> n_1gram, int n, String filename){
+			try{File file = new File(filename);
 			Scanner s = new Scanner(file);
 
             ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
@@ -183,13 +192,11 @@ public class TestSharon {
 							str = str.concat(" " +lines.get(i).get(k));		
 					}
 
-					//System.out.println(str);		
 					String substr = "";		
 					//get wn-1				
 					for(int j = 0; j < lines.get(i).size()-1; j++){
 							substr = substr.concat(" " + lines.get(i).get(j));		
 					}
-					//System.out.println(substr);
 
 					//get values
 					if(ngram.containsKey(str))
@@ -206,7 +213,6 @@ public class TestSharon {
 					//System.out.printf("IMPORTANT: %d = %d :  %d ", n, val, valn_1);
 				}
 
-			System.out.println(prob);
 			}
 
 			}catch ( Exception e ) {
@@ -252,29 +258,31 @@ public class TestSharon {
 	 		System.out.println(i + ". " + nGram + ": " + count);
 	 	}
 	 }
-	//System.out.println("HELLO");
 	return sortedNgrams;
 }
 
 
 	public static HashMap<String, Integer> createNgrams(ArrayList<ArrayList<String>> lines, int n){
 		HashMap<String, Integer> ngram = new HashMap<String, Integer>();
-		
 		// loop through all text	
 		for(int i =0; i < lines.size(); i++){
-			
+
 			// loop through sentence if long enough sentence to form ngram!
 			if(lines.get(i).size() > n){
+
 				for(int j = 0; j < lines.get(i).size(); j++){
-					//break if not enough words left for ngram					
-					if(j+n-1 > lines.get(i).size()-1)
-						break;
+					//break if not enough words left for ngram
+
+					if(j+n > lines.get(i).size()){
+						continue;
+					}
 					//create ngram string
 					else{
 						String str = "";
 						for(int k = 0; k < n; k++){
 							str = str + " " + lines.get(i).get(k+j);
 						}
+
 						//if str is known, add value
 						if(ngram.containsKey(str))
 						{
@@ -282,12 +290,14 @@ public class TestSharon {
 							val += 1;
 							ngram.put(str, val);
 						}
-						else
-							ngram.put(str, 1);						
-
+						else{
+							ngram.put(str, 1);	
+						}
 					}
 				}
+
 			}
+			System.out.println(ngram);
 			//else
 				//System.out.println("NO");
 
