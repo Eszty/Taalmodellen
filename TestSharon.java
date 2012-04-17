@@ -47,6 +47,8 @@ public class TestSharon {
 			LinkedHashMap<String, Integer> sortedN_1grams = new LinkedHashMap<String, Integer>();
 			sortedN_1grams = printngrams(n_1gram, sortedN_1grams,n);			
 
+
+			calculateprob(ngram, n_1gram, n);
 			//print to file
  	     	PrintStream out = new PrintStream(new FileOutputStream("OutFileSHARON.txt"));
 			for(Map.Entry<String, Integer> entry : sortedNgrams.entrySet())
@@ -73,6 +75,31 @@ public class TestSharon {
 			//calculateProb(ngram, n_1gram, n);
 
 		} catch ( Exception e ) {
+			// FileNotFoundException
+			e.printStackTrace();
+		}
+	}
+
+	public static void calculateprob(HashMap<String, Integer> ngram, HashMap<String, Integer> n_1gram, int n){
+          	
+			try{File file = new File("lorem.txt");
+			Scanner s = new Scanner(file);
+
+            ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
+            // Create an array containing all words in the text (in the same order)
+            while ( s.hasNextLine() ) {
+ 		        ArrayList<String> words = new ArrayList<String>();
+				words.add("START");
+                for ( String word : s.nextLine().split("\\s+") ) {
+
+                    words.add(word);
+
+                }
+				words.add("STOP");
+				lines.add(words);
+		    }
+			System.out.println(lines);
+			}catch ( Exception e ) {
 			// FileNotFoundException
 			e.printStackTrace();
 		}
