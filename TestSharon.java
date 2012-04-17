@@ -53,12 +53,11 @@ public class TestSharon {
 
 			//SORTEREN GAAT MIS!
 			sortedNgrams = printngrams(ngram, sortedNgrams,n);
-			System.out.println(sortedNgrams);
 			System.out.println("n-1 gram");
 			LinkedHashMap<String, Integer> sortedN_1grams = new LinkedHashMap<String, Integer>();
 			sortedN_1grams = printngrams(n_1gram, sortedN_1grams,n);			
 
-/*
+
 			calculateprob(ngram, n_1gram, n, file2);
 			//print to file
  	     	PrintStream out = new PrintStream(new FileOutputStream("OutFileSHARON.txt"));
@@ -84,7 +83,7 @@ public class TestSharon {
 
 		
 			calculateprob_3(file3);
-*/
+
 		} catch ( Exception e ) {
 			// FileNotFoundException
 			e.printStackTrace();
@@ -115,7 +114,7 @@ public class TestSharon {
 			//loop lines
 			for(int i = 0; i < testlines.size(); i++){
 
-				double count = 0;
+				double count = 1;
 				for(int j = 2; j < testlines.get(i).size()-1; j++){
 
 					//create ngram with j = n					
@@ -143,14 +142,22 @@ public class TestSharon {
 					if(ngram.containsKey(substr))
 					{
 						prob1 =  ngram.get(substr);
+						System.out.println(substr);
+						System.out.println(prob1);
 					}
+
 					if(n_1gram.containsKey(substr_n1))
 					{
+						System.out.println(substr_n1);
 						prob2 = n_1gram.get(substr_n1);
+						System.out.println(prob2);
 					}
-				count += ((double)prob1/(double)prob2);
+					
+					
+					System.out.println((double)prob1/(double)prob2);
+					count = (double)(count * ((double)prob1/(double)prob2) );
 	
-				}
+					}
 				System.out.printf("STRING: %s \n", testlines.get(i));			
 
 				System.out.printf("Final count: ");
@@ -223,23 +230,11 @@ public class TestSharon {
 
 	public static LinkedHashMap<String, Integer> printngrams(HashMap<String, Integer> nGramCounts, LinkedHashMap<String, Integer> sortedNgrams, int m){
 
-	 /*
-	  * Sorting the created n-gram hashmap with counters
-	  */
-	 List<String> nGrams = new ArrayList<String>(nGramCounts.keySet());
-
-	 List<Integer> yourMapValues = new ArrayList<Integer>(
-	 nGramCounts.values());
+        ValueComparator bvc =  new ValueComparator(nGramCounts);
+        sortedNgrams.putAll(nGramCounts);
 
 
-	 TreeSet<Integer> sortedSet = new TreeSet<Integer>(yourMapValues);
-	 Object[] sortedArray = sortedSet.toArray();
-	 int size = sortedArray.length;
-	 
-	 for (int i = size - 1; i >= 0; i--) {
-	 	sortedNgrams.put(nGrams.get(yourMapValues.indexOf(sortedArray[i])),
-	 	(Integer) sortedArray[i]);
-	 }
+
 
 	 /*
 	  * Printing the top m n-grams or all of them if m is bigger than the
@@ -253,7 +248,7 @@ public class TestSharon {
 	 	String nGram = (String) it.next();
 	 	Integer count = sortedNgrams.get(nGram);
 
-	 	if (i < m) {
+	 	if (i < sortedNgrams.size()) {
 	 		i++;
 	 		System.out.println(i + ". " + nGram + ": " + count);
 	 	}
@@ -297,9 +292,7 @@ public class TestSharon {
 				}
 
 			}
-			System.out.println(ngram);
-			//else
-				//System.out.println("NO");
+
 
 		}
 
@@ -308,3 +301,21 @@ public class TestSharon {
 	}
 
 }
+class ValueComparator implements Comparator {
+
+  Map base;
+  public ValueComparator(Map base) {
+      this.base = base;
+  }
+
+  public int compare(Object a, Object b) {
+
+    if((Double)base.get(a) < (Double)base.get(b)) {
+      return 1;
+    } else if((Double)base.get(a) == (Double)base.get(b)) {
+      return 0;
+    } else {
+      return -1;
+    }
+  }
+}	
