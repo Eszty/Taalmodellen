@@ -217,11 +217,11 @@ public class TestSharon {
 					//calculate prob
 					Double prob_1 = (double) val / (double) valn_1;
 					prob.put(str, prob_1);
-					//System.out.printf("IMPORTANT: %d = %d :  %d ", n, val, valn_1);
+					
 				}
 
 			}
-
+			System.out.println(prob);
 			}catch ( Exception e ) {
 			// FileNotFoundException
 			e.printStackTrace();

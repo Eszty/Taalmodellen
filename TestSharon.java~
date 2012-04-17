@@ -141,7 +141,7 @@ public class TestSharon {
 					//get value of substring from ngram
 					if(ngram.containsKey(substr))
 					{
-						prob1 =  ((double)(ngram.get(substr))/ (double)(ngram.size());
+						prob1 =  (double)(ngram.get(substr))/ (double)(ngram.size());
 						System.out.println(substr) ;
 						System.out.println(prob1);
 					}
@@ -217,11 +217,11 @@ public class TestSharon {
 					//calculate prob
 					Double prob_1 = (double) val / (double) valn_1;
 					prob.put(str, prob_1);
-					//System.out.printf("IMPORTANT: %d = %d :  %d ", n, val, valn_1);
+					
 				}
 
 			}
-
+			System.out.println(prob);
 			}catch ( Exception e ) {
 			// FileNotFoundException
 			e.printStackTrace();
