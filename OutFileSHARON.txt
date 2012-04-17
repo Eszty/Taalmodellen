@@ -1,113 +1,66 @@
-1490:  ik wil
-1228:  START ik
-1140:  START nee
-1128:  START van
-514:  dank u
-459:  START ja
-399:  nee dank
-393:  wil van
-389:  START om
-279:  den haag
-264:  tien uur
-249:  u wel
-223:  acht uur
-212:  wil om
-205:  negen uur
-199:  dat klopt
-194:  START op
-185:  nee hoor
-181:  nee ik
-179:  ja dat
-157:  wil graag
-154:  van den
-147:  om tien
-139:  naar amsterdam
-137:  naar den
-132:  groningen naar
-131:  START dat
-128:  naar groningen
-126:  START vanuit
-120:  dat is
-119:  om acht
-115:  van groningen
-114:  wil reizen
-111:  nee dat
-109:  om negen
-108:  START naar
-105:  wil ik
-103:  reizen van
-101:  uur vertrekken
-99:  naar utrecht
-98:  ja graag
-93:  van amsterdam
-87:  elf uur
-83:  haag centraal
-79:  wil vanuit
-78:  hoeft niet
-76:  naar station
-75:  graag van
-74:  centraal station
-71:  is niet
-69:  dat hoeft
-68:  amsterdam naar
-66:  drie uur
-65:  zeven uur
-64:  twaalf uur
-61:  om een
-60:  uur dertig
-59:  vier uur
-57:  START morgen
-55:  uur savonds
-54:  van leiden
-53:  START negen
-51:  naar nijmegen
-50:  wil op
-49:  maastricht naar
-48:  ik heb
-47:  hoor dank
-46:  naar leiden
-45:  van utrecht
-44:  naar eindhoven
-43:  zwolle naar
-42:  wil morgen
-41:  van alkmaar
-40:  niet naar
-39:  mariahoeve naar
-38:  haarlem naar
-37:  om zes
-36:  alkmaar naar
-35:  van delft
-34:  START vanaf
-33:  assen naar
-32:  op maandag
-31:  drieentwintig januari
-30:  arnhem naar
-29:  START vierentwintig
-28:  START aanstaande
-27:  van amersfoort
-26:  zes februari
-25:  tweeentwintig januari
-24:  oost indie
-23:  START vandaag
-22:  half elf
-21:  START station
-20:  naar delft
-19:  naar emmen
-18:  naar oss
-17:  naar zoetermeer
-16:  te herhalen
-15:  ik graag
-14:  ik wilde
-13:  u dat
-12:  naar de
-11:  januari om
-10:  eerste kerstdag
-9:  nodig dank
-8:  willen reizen
-7:  station hoorn
-6:  over acht
-5:  naar kerkrade
-4:  kan ik
-3:  is prima
-2:  eenendertig mei
-1:  graag doen
+391:  START nee dank u
+336:  START ik wil van
+224:  dank u wel STOP
+205:  nee dank u STOP
+177:  nee dank u wel
+162:  START nee ik wil
+145:  START ik wil om
+137:  START ik wil graag
+116:  START ja dat klopt
+111:  ja dat klopt STOP
+105:  START ik wil reizen
+86:  START ik wil niet
+81:  ik wil reizen van
+73:  START van groningen naar
+65:  START om tien uur
+63:  ik wil graag van
+62:  om tien uur STOP
+61:  START van den haag
+53:  dat hoeft niet STOP
+51:  START om acht uur
+50:  den haag centraal naar
+49:  START nee dat hoeft
+48:  naar den haag STOP
+46:  nee dat hoeft niet
+45:  van den haag naar
+44:  START om negen uur
+42:  dat is niet nodig
+41:  ik wil van den
+40:  nee ik wil om
+39:  START nee dat is
+37:  START ik wil op
+36:  wil van den haag
+35:  START ik wil morgen
+34:  START ja dat wil
+33:  nee ik wil van
+31:  ik wil niet naar
+30:  ik wil om tien
+29:  START van voorburg naar
+28:  negen uur smorgens STOP
+27:  START van leiden naar
+26:  dat wil ik STOP
+25:  om elf uur STOP
+24:  den haag mariahoeve naar
+23:  START van haarlem naar
+22:  acht uur vertrekken STOP
+21:  wil om acht uur
+20:  laan van nieuw oost
+19:  ik wil om een
+18:  hoor dank u STOP
+17:  START ja dat is
+16:  ik heb het begrepen
+15:  tien uur smorgens STOP
+14:  START van rotterdam naar
+13:  wil van alkmaar naar
+12:  ik wil om twaalf
+11:  twee uur smiddags STOP
+10:  START van enschede naar
+9:  van maastricht naar eindhoven
+8:  vier uur aankomen STOP
+7:  START nee dit is
+6:  ik wil van gorinchem
+5:  van amsterdam naar gouda
+4:  wil op donderdag zeuven
+3:  van amsterdam bijlmer naar
+2:  START nee om na
+1:  van alkmaar naar medemblik

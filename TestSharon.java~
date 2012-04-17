@@ -11,6 +11,8 @@ public class TestSharon {
   * those sentences. After that sort the n-grams to get the highest counts.
   * ovis-trainset.txt 2 10
   */
+
+	static ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
 	public static void main(String[] args) throws IOException {
 
 		 int n = Integer.parseInt(args[0]);
@@ -23,7 +25,7 @@ public class TestSharon {
            File file = new File("ovis-trainset.txt");
 			Scanner s = new Scanner(file);
 
-            ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
+            //ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
             // Create an array containing all words in the text (in the same order)
             while ( s.hasNextLine() ) {
  		        ArrayList<String> words = new ArrayList<String>();
@@ -33,7 +35,7 @@ public class TestSharon {
                     words.add(word);
 
                 }
-				//words.add("STOP");
+				words.add("STOP");
 				lines.add(words);
 		    }
 			HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
@@ -72,7 +74,7 @@ public class TestSharon {
 
 
 		
-			//calculateProb(ngram, n_1gram, n);
+			calculateprob_3();
 
 		} catch ( Exception e ) {
 			// FileNotFoundException
@@ -80,8 +82,80 @@ public class TestSharon {
 		}
 	}
 
+	// exercise 2.3
+	public static void calculateprob_3(){
+		
+			try{File file = new File("lorem20.txt");
+			Scanner s = new Scanner(file);
+            ArrayList<ArrayList<String>> testlines = new ArrayList<ArrayList<String>>();
+            // Create an array containing all words in the text (in the same order)
+            while ( s.hasNextLine() ) {
+ 		        ArrayList<String> words = new ArrayList<String>();
+				words.add("START");
+                for ( String word : s.nextLine().split("\\s+") ) {
+
+                    words.add(word);
+
+                }
+				words.add("STOP");
+				testlines.add(words);
+		    }
+
+
+			System.out.println("Probabilities -------- \n");
+			//loop lines
+			for(int i = 0; i < testlines.size(); i++){
+
+				double count = 0;
+				for(int j = 2; j < testlines.get(i).size()-1; j++){
+					//System.out.printf("%d : size - j: %d\n\n",  lines.get(i).size(), j);
+
+					//create ngram with j = n					
+					HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
+					ngram = createNgrams(lines, j);
+					
+					HashMap<String, Integer> n_1gram = new HashMap<String, Integer>();			
+					n_1gram = createNgrams(lines, j-1);
+
+
+
+					//get substring 
+					String substr = "";
+					String substr_n1 = "";
+					Integer prob1 = 0;
+					Integer prob2 = 0;
+
+					for(int k = 0; k < j; k++){
+						substr += " " + testlines.get(i).get(k)  ;
+						if(k < j-1)
+							substr_n1 += " " + testlines.get(i).get(k)  ;
+					}	
+
+					//get value of substring from ngram
+					if(ngram.containsKey(substr))
+					{
+						prob1 =  ngram.get(substr);
+					}
+					if(n_1gram.containsKey(substr_n1))
+					{
+						prob2 = n_1gram.get(substr_n1);
+					}
+				count += ((double)prob1/(double)prob2);
+	
+				}
+				System.out.printf("STRING: %s \n", testlines.get(i));			
+
+				System.out.printf("Final count: ");
+				System.out.println(count);	
+			}
+
+			}catch ( Exception e ) {
+			// FileNotFoundException
+			e.printStackTrace();}
+
+		}
+
 	public static void calculateprob(HashMap<String, Integer> ngram, HashMap<String, Integer> n_1gram, int n){
-          	
 			try{File file = new File("lorem.txt");
 			Scanner s = new Scanner(file);
 
@@ -110,13 +184,13 @@ public class TestSharon {
 							str = str.concat(" " +lines.get(i).get(k));		
 					}
 
-					System.out.println(str);		
+					//System.out.println(str);		
 					String substr = "";		
 					//get wn-1				
 					for(int j = 0; j < lines.get(i).size()-1; j++){
 							substr = substr.concat(" " + lines.get(i).get(j));		
 					}
-					System.out.println(substr);
+					//System.out.println(substr);
 
 					//get values
 					if(ngram.containsKey(str))
@@ -130,14 +204,11 @@ public class TestSharon {
 					//calculate prob
 					Double prob_1 = (double) val / (double) valn_1;
 					prob.put(str, prob_1);
-					System.out.printf("IMPORTANT: %d = %d :  %d ", n, val, valn_1);
+					//System.out.printf("IMPORTANT: %d = %d :  %d ", n, val, valn_1);
 				}
 
 			System.out.println(prob);
 			}
-
-
-
 
 			}catch ( Exception e ) {
 			// FileNotFoundException
@@ -182,7 +253,7 @@ public class TestSharon {
 	 		System.out.println(i + ". " + nGram + ": " + count);
 	 	}
 	 }
-	System.out.println("HELLO");
+	//System.out.println("HELLO");
 	return sortedNgrams;
 }
 
