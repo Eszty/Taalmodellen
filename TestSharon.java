@@ -33,7 +33,7 @@ public class TestSharon {
                     words.add(word);
 
                 }
-				words.add("STOP");
+				//words.add("STOP");
 				lines.add(words);
 		    }
 			HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
@@ -89,16 +89,53 @@ public class TestSharon {
             // Create an array containing all words in the text (in the same order)
             while ( s.hasNextLine() ) {
  		        ArrayList<String> words = new ArrayList<String>();
-				words.add("START");
+				//words.add("START");
                 for ( String word : s.nextLine().split("\\s+") ) {
 
                     words.add(word);
 
                 }
-				words.add("STOP");
+				//words.add("STOP");
 				lines.add(words);
 		    }
-			System.out.println(lines);
+			HashMap<String, Double> prob = new HashMap<String, Double>();			
+			//get wn			
+			for(int i = 0; i < lines.size()-1; i++){
+				//create only for testsentences of length n		
+				int val  = 0;
+				int valn_1 = 0;		
+				if(lines.get(i).size() == n){				
+					String str = "";
+					for(int k = 0; k < lines.get(i).size(); k++){
+							str = str.concat(" " +lines.get(i).get(k));		
+					}
+
+					System.out.println(str);		
+					String substr = "";		
+					//get wn-1				
+					for(int j = 0; j < lines.get(i).size()-1; j++){
+							substr = substr.concat(" " + lines.get(i).get(j));		
+					}
+					System.out.println(substr);
+
+					//get values
+					if(ngram.containsKey(str))
+					{
+						val = ngram.get(str);
+					}
+					if(n_1gram.containsKey(substr))
+					{
+						valn_1 = n_1gram.get(substr);
+					}
+					//calculate prob
+					Double prob_1 = (double) val / (double) valn_1;
+					prob.put(str, prob_1);
+					System.out.printf("IMPORTANT: %d = %d :  %d ", n, val, valn_1);
+				}
+
+			System.out.println(prob);
+			}
+
 			}catch ( Exception e ) {
 			// FileNotFoundException
 			e.printStackTrace();

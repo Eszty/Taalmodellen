@@ -1,100 +1,113 @@
-1156:  START ik wil
-397:  START nee dank
-393:  nee dank u
-390:  ik wil van
-249:  dank u STOP
-248:  dank u wel
-224:  u wel STOP
-211:  ik wil om
-185:  START nee hoor
-180:  dat klopt STOP
-179:  START nee ik
-177:  START ja dat
-164:  nee ik wil
-153:  ik wil graag
-141:  om tien uur
-139:  tien uur STOP
-128:  van den haag
-117:  ja dat klopt
-114:  negen uur STOP
-112:  ik wil reizen
-111:  START nee dat
-108:  acht uur STOP
-107:  van groningen naar
-105:  naar groningen STOP
-98:  ik wil niet
-97:  START ja graag
-93:  ja graag STOP
-88:  naar den haag
-83:  den haag centraal
-82:  wil reizen van
-80:  START van den
-79:  naar utrecht STOP
-78:  START van groningen
-77:  ik wil vanuit
-75:  START dat klopt
-74:  uur aankomen STOP
-73:  START tien uur
-72:  uur smorgens STOP
-71:  ik wil naar
-69:  START om tien
-66:  START acht uur
-64:  dat hoeft niet
-63:  wil graag van
-61:  hoeft niet STOP
-59:  om een uur
-58:  naar amsterdam STOP
-57:  om elf uur
-56:  niet nodig STOP
-55:  START van amsterdam
-53:  naar leeuwarden STOP
-52:  START om acht
-51:  uur sochtends STOP
-50:  haag centraal naar
-49:  is niet nodig
-48:  om twee uur
-47:  hoor dank u
-46:  nee hoor dank
-45:  dat wil ik
-44:  START nee om
-42:  om drie uur
-41:  ik wil vertrekken
-40:  van leiden naar
-39:  nee dat is
-38:  van utrecht naar
-37:  van haarlem naar
-36:  uur dertig STOP
-35:  om vier uur
-33:  vierentwintig januari STOP
-32:  van nijmegen naar
-31:  van delft naar
-30:  wil om tien
-29:  START van voorburg
-28:  START om elf
-27:  alphen aan den
-26:  START van delft
-25:  START nee bedankt
-24:  START nee niet
-23:  naar breda STOP
-22:  acht uur vertrekken
-21:  nieuw oost indie
-20:  reizen ik wil
-19:  START om een
-18:  van amersfoort naar
-17:  naar oss STOP
-16:  nul nul uur
-15:  wil om ongeveer
-14:  START om zes
-13:  van zoetermeer naar
-12:  START drieentwintig januari
-11:  van oss naar
-10:  amsterdam naar utrecht
-9:  zestien uur STOP
-8:  drie uur smiddags
-7:  om dertien uur
-6:  START den helder
-5:  over zes STOP
-4:  morgen middag STOP
-3:  naar blerick STOP
-2:  acht januari STOP
-1:  centraal naar oosterhout
+1490:  ik wil
+1228:  START ik
+1140:  START nee
+1128:  START van
+514:  dank u
+459:  START ja
+399:  nee dank
+393:  wil van
+389:  START om
+279:  den haag
+264:  tien uur
+249:  u wel
+223:  acht uur
+212:  wil om
+205:  negen uur
+199:  dat klopt
+194:  START op
+185:  nee hoor
+181:  nee ik
+179:  ja dat
+157:  wil graag
+154:  van den
+147:  om tien
+139:  naar amsterdam
+137:  naar den
+132:  groningen naar
+131:  START dat
+128:  naar groningen
+126:  START vanuit
+120:  dat is
+119:  om acht
+115:  van groningen
+114:  wil reizen
+111:  nee dat
+109:  om negen
+108:  START naar
+105:  wil ik
+103:  reizen van
+101:  uur vertrekken
+99:  naar utrecht
+98:  ja graag
+93:  van amsterdam
+87:  elf uur
+83:  haag centraal
+79:  wil vanuit
+78:  hoeft niet
+76:  naar station
+75:  graag van
+74:  centraal station
+71:  is niet
+69:  dat hoeft
+68:  amsterdam naar
+66:  drie uur
+65:  zeven uur
+64:  twaalf uur
+61:  om een
+60:  uur dertig
+59:  vier uur
+57:  START morgen
+55:  uur savonds
+54:  van leiden
+53:  START negen
+51:  naar nijmegen
+50:  wil op
+49:  maastricht naar
+48:  ik heb
+47:  hoor dank
+46:  naar leiden
+45:  van utrecht
+44:  naar eindhoven
+43:  zwolle naar
+42:  wil morgen
+41:  van alkmaar
+40:  niet naar
+39:  mariahoeve naar
+38:  haarlem naar
+37:  om zes
+36:  alkmaar naar
+35:  van delft
+34:  START vanaf
+33:  assen naar
+32:  op maandag
+31:  drieentwintig januari
+30:  arnhem naar
+29:  START vierentwintig
+28:  START aanstaande
+27:  van amersfoort
+26:  zes februari
+25:  tweeentwintig januari
+24:  oost indie
+23:  START vandaag
+22:  half elf
+21:  START station
+20:  naar delft
+19:  naar emmen
+18:  naar oss
+17:  naar zoetermeer
+16:  te herhalen
+15:  ik graag
+14:  ik wilde
+13:  u dat
+12:  naar de
+11:  januari om
+10:  eerste kerstdag
+9:  nodig dank
+8:  willen reizen
+7:  station hoorn
+6:  over acht
+5:  naar kerkrade
+4:  kan ik
+3:  is prima
+2:  eenendertig mei
+1:  graag doen

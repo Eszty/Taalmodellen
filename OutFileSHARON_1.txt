@@ -1,136 +1,130 @@
-2203:  START nee
-1654:  START ja
-1490:  ik wil
-1227:  START ik
-1226:  ja STOP
-1134:  START van
-1073:  nee STOP
-735:  uur STOP
-514:  dank u
-399:  nee dank
-395:  START om
-393:  wil van
-279:  den haag
-271:  reizen STOP
-264:  tien uur
-252:  u STOP
-249:  u wel
-240:  vertrekken STOP
-236:  wel STOP
-223:  acht uur
-212:  wil om
-205:  negen uur
-204:  februari STOP
-199:  dat klopt
-197:  START op
-191:  klopt STOP
-185:  nee hoor
-181:  nee ik
-179:  ja dat
-171:  januari STOP
-167:  START morgen
-160:  graag STOP
-157:  wil graag
-154:  van den
-148:  groningen STOP
-147:  om tien
-139:  naar amsterdam
-137:  naar den
-134:  morgen STOP
-132:  aankomen STOP
-131:  START dat
-128:  naar groningen
-126:  START vanuit
-120:  dat is
-119:  om acht
-116:  niet STOP
-115:  van groningen
-114:  wil reizen
-111:  nee dat
-109:  om negen
-108:  START naar
-105:  wil ik
-103:  reizen van
-101:  uur vertrekken
-100:  maastricht STOP
-99:  naar utrecht
-98:  ja graag
-94:  START tien
-93:  van amsterdam
-90:  START vandaag
-88:  amsterdam STOP
-87:  elf uur
-83:  haag centraal
-81:  smorgens STOP
-79:  wil vanuit
-78:  hoeft niet
-76:  naar station
-75:  graag van
-74:  centraal station
-72:  zwolle STOP
-71:  is niet
-69:  dat hoeft
-68:  amsterdam naar
-66:  drie uur
-65:  zeven uur
-64:  haag STOP
-62:  december STOP
-61:  om een
-60:  uur dertig
-59:   STOP
-57:  sochtends STOP
-55:  uur savonds
-54:  van leiden
-53:  START negen
-52:  START zondag
-51:  START zaterdag
-50:  savonds STOP
-49:  maastricht naar
-48:  dat wil
-47:  ik heb
-46:  vrijdag STOP
-45:  van utrecht
-44:  smiddags STOP
-43:  zwolle naar
-42:  wil morgen
-41:  woensdag STOP
-40:  niet naar
-39:  mariahoeve naar
-38:  maart STOP
-37:  dinsdag STOP
-36:  dertig STOP
-35:  van delft
-34:  START vanaf
-33:  START donderdag
-32:  op maandag
-31:  drieentwintig januari
-30:  heb het
-29:  START vierentwintig
-28:  START aanstaande
-27:  van amersfoort
-26:  arnhem STOP
-25:  tweeentwintig januari
-24:  oost indie
-23:  brussel STOP
-22:  half elf
-21:  bosch STOP
-20:  naar delft
-19:  naar emmen
-18:  naar oss
-17:  middag STOP
-16:  te herhalen
-15:  ik graag
-14:  goes STOP
-13:  u dat
-12:  naar de
-11:  vijfenveertig STOP
-10:  eerste kerstdag
-9:  nodig dank
-8:  willen reizen
-7:  station hoorn
-6:  over acht
-5:  zevenaar STOP
-4:  kan ik
-3:  is prima
-2:  eenendertig mei
-1:  graag doen
+10003:  START
+2294:  naar
+2225:  nee
+1949:  van
+1802:  ik
+1693:  ja
+1610:  wil
+1488:  uur
+1006:  om
+576:  u
+523:  dank
+491:  dat
+461:  reizen
+430:  niet
+399:  den
+371:  graag
+346:  op
+327:  groningen
+325:  tien
+323:  amsterdam
+315:  vertrekken
+301:  vanuit
+295:  station
+280:  acht
+279:  haag
+273:  wel
+270:  morgen
+254:  februari
+250:  negen
+237:  januari
+225:  centraal
+213:  klopt
+202:  een
+199:  is
+198:  utrecht
+195:  hoor
+186:  de
+176:  maastricht
+168:  aankomen
+142:  rotterdam
+139:  elf
+133:  leiden
+130:  zwolle
+126:  twee
+124:  smorgens
+114:  vandaag
+111:  leeuwarden
+110:  zes
+106:  het
+105:  voorburg
+100:  nijmegen
+98:  zaterdag
+97:  maandag
+94:  zondag
+93:  zeven
+91:  dinsdag
+89:  verbinding
+88:  twaalf
+87:  vrijdag
+86:  sochtends
+84:  assen
+81:  nodig
+79:  december
+78:  savonds
+76:  woensdag
+75:  amersfoort
+74:  dertig
+72:  donderdag
+71:  vanaf
+67:  delft
+66:  vlissingen
+64:  smiddags
+62:  arnhem
+61:  schiphol
+59:  
+58:  rond
+57:  breda
+55:  sittard
+54:  zoetermeer
+53:  venlo
+52:  nul
+51:  correct
+50:  vijftien
+49:  enschede
+48:  aanstaande
+47:  weten
+44:  veertien
+43:  heerlen
+42:  almelo
+41:  bosch
+40:  oss
+39:  dit
+38:  aan
+37:  twintig
+36:  begrepen
+35:  bedankt
+34:  alphen
+33:  goed
+32:  noord
+31:  emmen
+30:  vink
+29:  zeventien
+28:  zesentwintig
+27:  heerenveen
+26:  volgende
+25:  ochtend
+24:  sloterdijk
+23:  goes
+22:  tussen
+21:  april
+20:  harderwijk
+19:  ommen
+18:  doe
+17:  avond
+16:  lochem
+15:  laatste
+14:  bussum
+13:  beek
+12:  elst
+11:  lunteren
+10:  die
+9:  toe
+8:  geerdijk
+7:  overvecht
+6:  alleen
+5:  namelijk
+4:  hier
+3:  stop
+2:  minuutjes
+1:  ontvangen
