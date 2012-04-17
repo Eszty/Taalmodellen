@@ -114,8 +114,8 @@ public class TestSharon {
 			//loop lines
 			for(int i = 0; i < testlines.size(); i++){
 
-				double count = 3;
-				for(int j = 2; j < testlines.get(i).size()-1; j++){
+				double count = 1;
+				for(int j = 2; j < testlines.get(i).size(); j++){
 
 					//create ngram with j = n					
 					HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
@@ -129,8 +129,8 @@ public class TestSharon {
 					//get substring 
 					String substr = "";
 					String substr_n1 = "";
-					Integer prob1 = 0;
-					Integer prob2 = 0;
+					double prob1 = 0;
+					double prob2 = 0;
 
 					for(int k = 0; k < j; k++){
 						substr += " " + testlines.get(i).get(k)  ;
@@ -141,15 +141,15 @@ public class TestSharon {
 					//get value of substring from ngram
 					if(ngram.containsKey(substr))
 					{
-						prob1 =  ngram.get(substr);
-						System.out.println(substr);
+						prob1 =  ((double)(ngram.get(substr))/ (double)(ngram.size());
+						System.out.println(substr) ;
 						System.out.println(prob1);
 					}
 
 					if(n_1gram.containsKey(substr_n1))
 					{
 						System.out.println(substr_n1);
-						prob2 = n_1gram.get(substr_n1);
+						prob2 = (double)(n_1gram.get(substr_n1))/ ((double)n_1gram.size());
 						System.out.println(prob2);
 					}
 					
