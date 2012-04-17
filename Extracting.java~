@@ -22,10 +22,9 @@ public class Extracting
 		List<String> ngrams = new ArrayList<String>();
 		String[] words = str.split(" ");
 
-		for (int i = 0; i < words.length - n + 1; i++)
-			System.out.println('Yoo');
+		for (int i = 0; i < words.length - n + 1; i++){
 			ngrams.add(concat(words, i, i+n));
-
+		}	
 		return ngrams;
 	}
 
@@ -96,7 +95,7 @@ public class Extracting
 
 			TextIO.readFile("output.txt");
 			
-			//TextIO.writeFile("hash.txt");
+			TextIO.writeFile("hash.txt");
 
 			while(!TextIO.eof())
 			{
@@ -112,7 +111,7 @@ public class Extracting
 					hashmap.put(string, 1);
 			}
 			
-			//TextIO.putln(hashmap); //writes hashmap to file
+			TextIO.putln(hashmap); //writes hashmap to file
 
 			//iterate through hashmap
 			for(Map.Entry<String, Integer> entry : hashmap.entrySet())
@@ -126,8 +125,8 @@ public class Extracting
 				//System.out.printf("%s, %d\n", key, val);
 			}
 
-			//TextIO.writeFile("values.txt");
-			//TextIO.putln(values); //writes values to file
+			TextIO.writeFile("values.txt");
+			TextIO.putln(values); //writes values to file
 			
 
 			//convert arrayList to simple array	
@@ -151,16 +150,17 @@ public class Extracting
 			for(int i = 0; i < m; i++)
 			{
 				//System.out.printf("%d\n", valuesArray[i]);
-
-				Integer a = valuesArray[i];
-				
-				for (Map.Entry<String, Integer> entry : hashmap.entrySet()) 
-				{
-					if(a.equals(entry.getValue()))
+				if(valuesArray[i] != valuesArray[i+1]){
+					Integer a = valuesArray[i];
+					for (Map.Entry<String, Integer> entry : hashmap.entrySet()) 
 					{
-						System.out.printf("%d, %s\n", valuesArray[i], entry.getKey());
+						if(a.equals(entry.getValue()))
+						{
+							System.out.printf("%d, %s\n", valuesArray[i], entry.getKey());
+						}
 					}
-				}
+			}
+				
 			}
 
 

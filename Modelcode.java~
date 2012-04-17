@@ -204,7 +204,7 @@ public static HashMap<String, Integer> wordsCounter(StringTokenizer st, int n) {
 		String[] words = sentence.split(" "); 
 		System.out.println(words.length);
  		sentence = "<s> " + sentence;
- 		for (int i = 0; words.length+i <n-1  ; i++) {
+ 		for (int i = 0; words.length+i <n  ; i++) {
  			sentence = "<s> " + sentence;	
  		}
 
