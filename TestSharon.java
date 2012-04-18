@@ -13,103 +13,127 @@ public class TestSharon {
   */
 
 	static ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
-	public static void main(String[] args) throws IOException {
 
-		 int n = Integer.parseInt(args[0]);
-		System.out.printf("??? %d \n",n);
-		 String file1 = args[1];
-		 String file2 = args[2];
-		 String file3 = args[3];
-
+	public static ArrayList<ArrayList<String>> filetolines(String filename, int n) throws IOException{
+		
+		ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
 		try {
 
-           File file = new File(file1);
+           File file = new File(filename);
 			Scanner s = new Scanner(file);
 
             // Create an array containing all words in the text (in the same order)
             while ( s.hasNextLine() ) {
  		        ArrayList<String> words = new ArrayList<String>();
-				words.add("START");
+				for(int i = 0; i < n-1; i++){
+					words.add("START");
+				}
                 for ( String word : s.nextLine().split("\\s+") ) {
 
                     words.add(word);
 
                 }
-				words.add("STOP");
+				for(int i = 0; i < n-1; i++){
+					words.add("STOP");
+				}
 				lines.add(words);
 		    }
-
-
-			HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
-			HashMap<String, Integer> n_1gram = new HashMap<String, Integer>();
-			ngram = createNgrams(lines, n);
-			n_1gram = createNgrams(lines, n-1);
-
-
-
-			//sort ngram
-			LinkedHashMap<String, Integer> sortedNgrams = new LinkedHashMap<String, Integer>();
-			System.out.println("n gram");
-
-			//SORTEREN GAAT MIS!
-			sortedNgrams = printngrams(ngram, sortedNgrams,n);
-			System.out.println("n-1 gram");
-			LinkedHashMap<String, Integer> sortedN_1grams = new LinkedHashMap<String, Integer>();
-			sortedN_1grams = printngrams(n_1gram, sortedN_1grams,n);			
-
-
-			calculateprob(ngram, n_1gram, n, file2);
-			//print to file
- 	     	PrintStream out = new PrintStream(new FileOutputStream("OutFileSHARON.txt"));
-			for(Map.Entry<String, Integer> entry : sortedNgrams.entrySet())
-			{
-				String key = entry.getKey();
-				Integer val = entry.getValue();
-				//System.out.printf("%s, %d\n", key, val);
-        		out.println(val+ ": " + key);
-			}
-	      out.close();
- 	     	PrintStream out2 = new PrintStream(new FileOutputStream("OutFileSHARON_1.txt"));
-			for(Map.Entry<String, Integer> entry : sortedN_1grams.entrySet())
-			{
-				String key = entry.getKey();
-				Integer val = entry.getValue();
-				//System.out.printf("%s, %d\n", key, val);
-        		out2.println(val+ ": " + key);
-			}
-	      out2.close();
-
-
-
-		
-			calculateprob_3(file3);
-
 		} catch ( Exception e ) {
 			// FileNotFoundException
 			e.printStackTrace();
 		}
+		return lines;
+	}
+
+
+	// opdracht 3 create train- and testset
+	public static void percentage3(int percentage, String filename, int n){
+		//create corpus		
+		ArrayList<ArrayList<String>> corpus = new ArrayList<ArrayList<String>>();
+		try{
+			corpus = filetolines(filename,n);
+		} catch ( Exception e ) {
+			// FileNotFoundException
+			e.printStackTrace();
+		}
+		float size = corpus.size();
+		int testsize = (int)(size/100 * percentage);
+		System.out.println(testsize);
+		
+		ArrayList<ArrayList<String>> traincorpus = new ArrayList<ArrayList<String>>();
+		ArrayList<ArrayList<String>> testcorpus = new ArrayList<ArrayList<String>>();
+		for(int i = 0; i < size; i++){
+			if(i < testsize)
+				traincorpus.add(corpus.get(i));		
+			else
+				testcorpus.add(corpus.get(i));
+		}	
+		HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
+		ngram = createNgrams(testcorpus, n);
+		System.out.println(ngram);
+
+	}
+
+	public static void main(String[] args) throws IOException {
+
+		int n = Integer.parseInt(args[0]);
+		System.out.printf("??? %d \n",n);
+		String file1 = args[1];
+		String file2 = args[2];
+		String file3 = args[3];
+
+		//create corpuslines from file
+		lines = filetolines(file1,n); 
+
+		HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
+		HashMap<String, Integer> n_1gram = new HashMap<String, Integer>();
+		ngram = createNgrams(lines, n);
+		n_1gram = createNgrams(lines, n-1);
+
+
+
+		//sort ngram
+		LinkedHashMap<String, Integer> sortedNgrams = new LinkedHashMap<String, Integer>();
+		System.out.println("n gram");
+		//SORTEREN GAAT MIS!
+		sortedNgrams = printngrams(ngram, sortedNgrams,n);
+		System.out.println("n-1 gram");
+		LinkedHashMap<String, Integer> sortedN_1grams = new LinkedHashMap<String, Integer>();
+		sortedN_1grams = printngrams(n_1gram, sortedN_1grams,n);			
+
+		calculateprob(ngram, n_1gram, n, file2);
+		//print to file
+     	PrintStream out = new PrintStream(new FileOutputStream("OutFileSHARON.txt"));
+		for(Map.Entry<String, Integer> entry : sortedNgrams.entrySet())
+		{
+			String key = entry.getKey();
+			Integer val = entry.getValue();
+			//System.out.printf("%s, %d\n", key, val);
+       		out.println(val+ ": " + key);
+		}
+      	out.close();
+     	PrintStream out2 = new PrintStream(new FileOutputStream("OutFileSHARON_1.txt"));
+		for(Map.Entry<String, Integer> entry : sortedN_1grams.entrySet())
+		{
+			String key = entry.getKey();
+			Integer val = entry.getValue();
+			//System.out.printf("%s, %d\n", key, val);
+        	out2.println(val+ ": " + key);
+		}
+	    out2.close();
+
+		calculateprob_3(file3,n);
+
+		percentage3(1, "corpus.txt", 2);
 	}
 
 	// exercise 2.3
-	public static void calculateprob_3(String filename){
+	public static void calculateprob_3(String filename, int n){
 		
-			try{File file = new File(filename);
-			Scanner s = new Scanner(file);
-            ArrayList<ArrayList<String>> testlines = new ArrayList<ArrayList<String>>();
-            // Create an array containing all words in the text (in the same order)
-            while ( s.hasNextLine() ) {
- 		        ArrayList<String> words = new ArrayList<String>();
-				words.add("START");
-                for ( String word : s.nextLine().split("\\s+") ) {
-
-                    words.add(word);
-
-                }
-				words.add("STOP");
-				testlines.add(words);
-		    }
-
-
+		try{
+           ArrayList<ArrayList<String>> testlines = new ArrayList<ArrayList<String>>();
+			testlines = filetolines(filename,n );
+  
 			System.out.println("Probabilities -------- \n");
 			//loop lines
 			for(int i = 0; i < testlines.size(); i++){
@@ -171,22 +195,13 @@ public class TestSharon {
 		}
 
 	public static void calculateprob(HashMap<String, Integer> ngram, HashMap<String, Integer> n_1gram, int n, String filename){
-			try{File file = new File(filename);
-			Scanner s = new Scanner(file);
+		
+		try{
 
             ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
+			lines = filetolines(filename, n);
             // Create an array containing all words in the text (in the same order)
-            while ( s.hasNextLine() ) {
- 		        ArrayList<String> words = new ArrayList<String>();
-				//words.add("START");
-                for ( String word : s.nextLine().split("\\s+") ) {
-
-                    words.add(word);
-
-                }
-				//words.add("STOP");
-				lines.add(words);
-		    }
+           
 			HashMap<String, Double> prob = new HashMap<String, Double>();			
 			//get wn			
 			for(int i = 0; i < lines.size()-1; i++){
@@ -301,21 +316,23 @@ public class TestSharon {
 	}
 
 }
-class ValueComparator implements Comparator {
 
-  Map base;
-  public ValueComparator(Map base) {
-      this.base = base;
-  }
 
-  public int compare(Object a, Object b) {
+	class ValueComparator implements Comparator {
 
-    if((Double)base.get(a) < (Double)base.get(b)) {
-      return 1;
-    } else if((Double)base.get(a) == (Double)base.get(b)) {
-      return 0;
-    } else {
-      return -1;
-    }
-  }
-}	
+	  Map base;
+	  public ValueComparator(Map base) {
+		  this.base = base;
+	  }
+
+	  public int compare(Object a, Object b) {
+
+		if((Double)base.get(a) < (Double)base.get(b)) {
+		  return 1;
+		} else if((Double)base.get(a) == (Double)base.get(b)) {
+		  return 0;
+		} else {
+		  return -1;
+		}
+	  }
+	}	
