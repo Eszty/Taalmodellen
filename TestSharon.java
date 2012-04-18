@@ -14,7 +14,7 @@ public class TestSharon {
 
 	static ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
 
-	public static ArrayList<ArrayList<String>> filetolines(String filename) throws IOException{
+	public static ArrayList<ArrayList<String>> filetolines(String filename, int n) throws IOException{
 		
 		ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
 		try {
@@ -25,13 +25,17 @@ public class TestSharon {
             // Create an array containing all words in the text (in the same order)
             while ( s.hasNextLine() ) {
  		        ArrayList<String> words = new ArrayList<String>();
-				words.add("START");
+				for(int i = 0; i < n-1; i++){
+					words.add("START");
+				}
                 for ( String word : s.nextLine().split("\\s+") ) {
 
                     words.add(word);
 
                 }
-				words.add("STOP");
+				for(int i = 0; i < n-1; i++){
+					words.add("STOP");
+				}
 				lines.add(words);
 		    }
 		} catch ( Exception e ) {
@@ -42,6 +46,34 @@ public class TestSharon {
 	}
 
 
+	// opdracht 3 create train- and testset
+	public static void percentage3(int percentage, String filename, int n){
+		//create corpus		
+		ArrayList<ArrayList<String>> corpus = new ArrayList<ArrayList<String>>();
+		try{
+			corpus = filetolines(filename,n);
+		} catch ( Exception e ) {
+			// FileNotFoundException
+			e.printStackTrace();
+		}
+		float size = corpus.size();
+		int testsize = (int)(size/100 * percentage);
+		System.out.println(testsize);
+		
+		ArrayList<ArrayList<String>> traincorpus = new ArrayList<ArrayList<String>>();
+		ArrayList<ArrayList<String>> testcorpus = new ArrayList<ArrayList<String>>();
+		for(int i = 0; i < size; i++){
+			if(i < testsize)
+				traincorpus.add(corpus.get(i));		
+			else
+				testcorpus.add(corpus.get(i));
+		}	
+		HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
+		ngram = createNgrams(testcorpus, n);
+		System.out.println(ngram);
+
+	}
+
 	public static void main(String[] args) throws IOException {
 
 		int n = Integer.parseInt(args[0]);
@@ -51,7 +83,7 @@ public class TestSharon {
 		String file3 = args[3];
 
 		//create corpuslines from file
-		lines = filetolines(file1); 
+		lines = filetolines(file1,n); 
 
 		HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
 		HashMap<String, Integer> n_1gram = new HashMap<String, Integer>();
@@ -90,19 +122,17 @@ public class TestSharon {
 		}
 	    out2.close();
 
+		calculateprob_3(file3,n);
 
-
-		
-		calculateprob_3(file3);
-
+		percentage3(1, "corpus.txt", 2);
 	}
 
 	// exercise 2.3
-	public static void calculateprob_3(String filename){
+	public static void calculateprob_3(String filename, int n){
 		
 		try{
            ArrayList<ArrayList<String>> testlines = new ArrayList<ArrayList<String>>();
-			testlines = filetolines(filename);
+			testlines = filetolines(filename,n );
   
 			System.out.println("Probabilities -------- \n");
 			//loop lines
@@ -169,7 +199,7 @@ public class TestSharon {
 		try{
 
             ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
-			lines = filetolines(filename);
+			lines = filetolines(filename, n);
             // Create an array containing all words in the text (in the same order)
            
 			HashMap<String, Double> prob = new HashMap<String, Double>();			
@@ -288,21 +318,21 @@ public class TestSharon {
 }
 
 
-class ValueComparator implements Comparator {
+	class ValueComparator implements Comparator {
 
-  Map base;
-  public ValueComparator(Map base) {
-      this.base = base;
-  }
+	  Map base;
+	  public ValueComparator(Map base) {
+		  this.base = base;
+	  }
 
-  public int compare(Object a, Object b) {
+	  public int compare(Object a, Object b) {
 
-    if((Double)base.get(a) < (Double)base.get(b)) {
-      return 1;
-    } else if((Double)base.get(a) == (Double)base.get(b)) {
-      return 0;
-    } else {
-      return -1;
-    }
-  }
-}	
+		if((Double)base.get(a) < (Double)base.get(b)) {
+		  return 1;
+		} else if((Double)base.get(a) == (Double)base.get(b)) {
+		  return 0;
+		} else {
+		  return -1;
+		}
+	  }
+	}	
