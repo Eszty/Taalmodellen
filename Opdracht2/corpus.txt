@@ -1,0 +1,13 @@
+A has number 1
+K with number 1 is better than A
+B has number 2
+A has number 3
+L with number 2 is better than B
+C has number 3
+M with number 3 is better than C
+D has number 4
+N with number 4 is better than D
+E has number 5
+O with number 5 is better than E
+F has number 6
+P with number 6 is better than F
