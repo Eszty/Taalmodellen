@@ -69,6 +69,7 @@ public class TestSharon {
 		
 		//probs per line
 		for(int i = 0; i < testset_lines.size(); i++){
+			System.out.printf("prob %d", i);
 			ArrayList<String> line = testset_lines.get(i);
 			ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
 			lines.add(line);
