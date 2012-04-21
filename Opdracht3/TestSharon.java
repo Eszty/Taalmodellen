@@ -19,7 +19,7 @@ public class TestSharon {
 		ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
 		try {
 
-           File file = new File(filename);
+        	File file = new File(filename);
 			Scanner s = new Scanner(file);
 
             // Create an array containing all words in the text (in the same order)
@@ -79,8 +79,8 @@ public class TestSharon {
 		int n = Integer.parseInt(args[0]);
 		System.out.printf("??? %d \n",n);
 		String file1 = args[1];
-		String file2 = args[2];
-		String file3 = args[3];
+		//String file2 = args[2];
+		//String file3 = args[3];
 
 		//create corpuslines from file
 		lines = filetolines(file1,n); 
@@ -101,7 +101,7 @@ public class TestSharon {
 		LinkedHashMap<String, Integer> sortedN_1grams = new LinkedHashMap<String, Integer>();
 		sortedN_1grams = printngrams(n_1gram, sortedN_1grams,n);			
 
-		calculateprob(ngram, n_1gram, n, file2);
+		//calculateprob(ngram, n_1gram, n, file2);
 		//print to file
      	PrintStream out = new PrintStream(new FileOutputStream("OutFileSHARON.txt"));
 		for(Map.Entry<String, Integer> entry : sortedNgrams.entrySet())
@@ -122,9 +122,9 @@ public class TestSharon {
 		}
 	    out2.close();
 
-		calculateprob_3(file3,n);
+		//calculateprob_3(file3,n);
 
-		percentage3(1, "corpus.txt", 2);
+		//percentage3(1, "corpus.txt", 2);
 	}
 
 	// exercise 2.3
@@ -265,7 +265,7 @@ public class TestSharon {
 
 	 	if (i < sortedNgrams.size()) {
 	 		i++;
-	 		System.out.println(i + ". " + nGram + ": " + count);
+	 		//System.out.println(i + ". " + nGram + ": " + count);
 	 	}
 	 }
 	return sortedNgrams;
