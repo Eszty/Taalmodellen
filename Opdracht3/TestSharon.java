@@ -211,58 +211,6 @@ public class TestSharon {
 	}
 
 
-	public static void main(String[] args) throws IOException {
-
-		int n = Integer.parseInt(args[0]);
-		System.out.printf("??? %d \n",n);
-		String file1 = args[1];
-		//String file2 = args[2];
-		//String file3 = args[3];
-
-		//create corpuslines from file
-		lines = filetolines(file1,n); 
-
-		HashMap<String, Integer> ngram = new HashMap<String, Integer>();			
-		HashMap<String, Integer> n_1gram = new HashMap<String, Integer>();
-		ngram = createNgrams(lines, n);
-		n_1gram = createNgrams(lines, n-1);
-
-
-
-		//sort ngram
-		LinkedHashMap<String, Integer> sortedNgrams = new LinkedHashMap<String, Integer>();
-		System.out.println("n gram");
-		//SORTEREN GAAT MIS!
-		sortedNgrams = printngrams(ngram, sortedNgrams,n);
-		System.out.println("n-1 gram");
-		LinkedHashMap<String, Integer> sortedN_1grams = new LinkedHashMap<String, Integer>();
-		sortedN_1grams = printngrams(n_1gram, sortedN_1grams,n);			
-
-		//calculateprob(ngram, n_1gram, n, file2);
-		//print to file
-     	PrintStream out = new PrintStream(new FileOutputStream("OutFileSHARON.txt"));
-		for(Map.Entry<String, Integer> entry : sortedNgrams.entrySet())
-		{
-			String key = entry.getKey();
-			Integer val = entry.getValue();
-			//System.out.printf("%s, %d\n", key, val);
-       		out.println(val+ ": " + key);
-		}
-      	out.close();
-     	PrintStream out2 = new PrintStream(new FileOutputStream("OutFileSHARON_1.txt"));
-		for(Map.Entry<String, Integer> entry : sortedN_1grams.entrySet())
-		{
-			String key = entry.getKey();
-			Integer val = entry.getValue();
-			//System.out.printf("%s, %d\n", key, val);
-        	out2.println(val+ ": " + key);
-		}
-	    out2.close();
-
-		//calculateprob_3(file3,n);
-
-		//percentage3(1, "corpus.txt", 2);
-	}
 
 
 // exercise 3!!
