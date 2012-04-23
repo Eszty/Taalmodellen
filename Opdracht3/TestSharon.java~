@@ -69,21 +69,12 @@ public class TestSharon {
 		
 		//probs per line
 		for(int i = 0; i < testset_lines.size(); i++){
-			System.out.printf("prob %d", i);
 			ArrayList<String> line = testset_lines.get(i);
 			ArrayList<ArrayList<String>> lines = new ArrayList<ArrayList<String>>();
 			lines.add(line);
 			float probability = calcprob(lines, n);
 			prob.put(line, probability);
 		}
-/*
-		String[] keys = new String[testset_ngram.size()];
-
-		int index = 0;
-		for (Map.Entry<String, Integer> mapEntry : testset_ngram.entrySet()) {
-			keys_testset[index] = mapEntry.getKey();
-			index++;
-		}		*/
 
 		return prob;
 	}
@@ -101,9 +92,10 @@ public class TestSharon {
 		HashMap<String, Integer> trainset_ngram_1 = new HashMap<String, Integer>();			
 		trainset_ngram_1 = createNgrams(lines, n-1);
 
-		float count_up = 1;
-		float count_down = 1;
+
 		for (Map.Entry<String, Integer> mapEntry : testset_ngram.entrySet()) {
+		float count_up = 0;
+		float count_down = 0;
 			String keyTest = mapEntry.getKey();
 			//create wi-1			
 			String[] test = keyTest.split(" ");
@@ -119,18 +111,31 @@ public class TestSharon {
 				String keyTrain = mapEntryTrain.getKey();
 				if(keyTest.equals(keyTrain)){
 					count_up = mapEntryTrain.getValue();
+					break;
 				}
 			}
 			//get count(wi-1)
-			for (Map.Entry<String, Integer> mapEntryTrain : trainset_ngram_1.entrySet()) {
+			for (Map.Entry<String, Integer> mapEntryTrain : trainset_ngram.entrySet()) {
 					String keyTrain = mapEntryTrain.getKey();
-					if(keyTest2.equals(keyTrain)){
-						count_down = mapEntryTrain.getValue();
+					String[] temp = keyTrain.split(" ");					
+					String[] keytesttemp = keyTest2.split(" ");
+					if(temp[1].equals(keytesttemp[1])){
+						count_down += mapEntryTrain.getValue();
+						System.out.printf("Trainstring: %s -> %d \n", keyTrain, mapEntryTrain.getValue());
+						//System.out.println(keyTrain)
+
 					}
+					/*if(keyTest2.equals(keyTrain)){
+						count_down = mapEntryTrain.getValue();
+						break;
+					}*/
 				}
-			//System.out.println(keyTest);
-			//System.out.println(count_up/count_down);
-			//P(wi|wi-1) = Count(wi-1, wi) / Count(wi) voor gehele zin
+			System.out.println("\nkeyTest");
+			System.out.println(keyTest);
+			System.out.printf("count up: %f \n", count_up);
+			System.out.printf("count down: %f \n\n-------\n", count_down);
+
+			//P(wi|wi-1) = Count(wi-1, wi) / Count(wi, w) voor gehele zin
 			probability *= (count_up/count_down);
 
 
